@@ -1,6 +1,13 @@
 import Link from "next/link";
+import { createContext, useState } from "react";
+import { DebounceInput } from "react-debounce-input";
+import SearchPreview from "./SearchPreview/SearchPreview";
+
+export const SearchContext = createContext<any>(null);
 
 export default function Navbar() {
+    const [searchString, setSearchString] = useState("");
+
     return (
         <div className="flex items-center justify-between w-full px-6 mt-6 dark:text-white">
             <div className="flex items-center flex-none">
@@ -12,7 +19,7 @@ export default function Navbar() {
             </div>
             <div className="relative flex items-center flex-1 mx-12">
                 <svg
-                    className="absolute w-5 h-5 text-black left-3"
+                    className="absolute w-5 h-5 text-white left-3"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                 >
@@ -22,7 +29,18 @@ export default function Navbar() {
                         clipRule="evenodd"
                     />
                 </svg>
-                <input className="w-full h-full py-2 pr-3 transition-colors duration-300 bg-transparent rounded-lg outline-none pl-9 bg-moreLight focus:bg-moreLight hover:bg-slightDark" />
+
+                <DebounceInput
+                    className="w-full h-full py-2 pr-3 font-medium transition-colors duration-300 bg-transparent rounded-lg outline-none pl-9 bg-moreLight focus:bg-moreLight hover:bg-slightDark"
+                    minLength={2}
+                    debounceTimeout={500}
+                    onChange={(e) => setSearchString(e.target.value)}
+                    placeholder="Search for a collection"
+                />
+
+                <SearchContext.Provider value={{ searchString }}>
+                    <SearchPreview />
+                </SearchContext.Provider>
             </div>
             <div className="flex items-center flex-none space-x-3 text-lg font-semibold">
                 <Link href="/upcoming">

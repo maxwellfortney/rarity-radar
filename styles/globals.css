@@ -22,6 +22,10 @@ a {
     box-sizing: border-box;
 }
 
+input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 .radarAnimation::before {
     content: "";
     position: absolute;
@@ -49,4 +53,21 @@ a {
         top: 0;
         opacity: 1;
     }
+}
+
+/* React Transition Group */
+
+.fade-enter {
+    opacity: 0;
+}
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms;
+}
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
 }

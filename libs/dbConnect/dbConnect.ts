@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGODB_PASSWORD = process.env.MONGODB_PASSWORD as string;
+const MONGODB_PASSWORD = process.env.NEXT_PUBLIC_MONGODB_PASSWORD as string;
 
 if (!MONGODB_PASSWORD) {
     throw new Error(
@@ -8,7 +8,7 @@ if (!MONGODB_PASSWORD) {
     );
 }
 
-const NODE_ENV = process.env.NODE_ENV as string;
+const NODE_ENV = process.env.NEXT_PUBLIC_NODE_ENV as string;
 
 if (!NODE_ENV) {
     throw new Error(
@@ -16,7 +16,7 @@ if (!NODE_ENV) {
     );
 }
 
-const mongoDbURI = `mongodb+srv://admin:${MONGODB_PASSWORD}@cluster0.27smu.mongodb.net/${NODE_ENV}?retryWrites=true&w=majority`;
+const mongoDbURI = `mongodb+srv://admin:${MONGODB_PASSWORD}@cluster0.zeofy.mongodb.net/${NODE_ENV}?retryWrites=true&w=majority`;
 
 /**
  * Global is used here to maintain a cached connection across hot reloads

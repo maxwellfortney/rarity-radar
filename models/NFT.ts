@@ -1,20 +1,26 @@
 import mongoose, { Document, model, Model, Schema } from "mongoose";
-import { Attribute, IAttribute } from "./Attribute";
+import { ITrait, TraitSchema } from "./Trait";
 
 export interface INFT extends Document {
+    collectionName: string;
     name: string;
     description: string;
     externalURL: string;
     image: string;
-    attributes: Array<IAttribute>;
+    attributes: Array<ITrait>;
+    meanPercentage: number;
+    rank: number;
 }
 
-const NFTSchema: Schema = new mongoose.Schema({
+export const NFTSchema: Schema = new mongoose.Schema({
+    collectionName: String,
     name: String,
     description: String,
     externalURL: String,
     image: String,
-    attributes: [Attribute],
+    attributes: [TraitSchema],
+    meanPercentage: Number,
+    rank: Number,
 });
 
 export const NFT: Model<INFT> = mongoose.models.NFT || model("NFT", NFTSchema);
