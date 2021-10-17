@@ -16,7 +16,7 @@ if (!NODE_ENV) {
     );
 }
 
-const mongoDbURI = `mongodb+srv://admin:${MONGODB_PASSWORD}@cluster0.zeofy.mongodb.net/${NODE_ENV}?retryWrites=true&w=majority`;
+const mongoDbURI = `mongodb+srv://admin:${MONGODB_PASSWORD}@cluster0.zeofy.mongodb.net/development?retryWrites=true&w=majority`;
 
 /**
  * Global is used here to maintain a cached connection across hot reloads
