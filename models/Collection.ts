@@ -1,19 +1,23 @@
 import mongoose, { Document, model, Model, Schema } from "mongoose";
-import { INFT, NFTSchema } from "./NFT";
-import { ITrait, TraitSchema } from "./Trait";
 
 export interface ICollection extends Document {
     name: string;
     externalURL: string;
-    // traits: Array<ITrait>;
-    // NFTs: Array<INFT>;
+    discordURL?: string;
+    twitterURL?: string;
+    totalSupply: number;
+    listDate?: number;
+    mintPrice?: number;
 }
 
 export const CollectionSchema: Schema = new mongoose.Schema({
     name: String,
     externalURL: String,
-    // traits: [TraitSchema],
-    // NFTs: [NFTSchema],
+    discordURL: { type: String, required: false },
+    twitterURL: { type: String, required: false },
+    totalSupply: Number,
+    listDate: { type: Number, required: false },
+    mintPrice: { type: Number, required: false },
 });
 
 export const Collection: Model<ICollection> =

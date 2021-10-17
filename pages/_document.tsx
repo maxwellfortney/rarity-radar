@@ -26,6 +26,8 @@ class Document extends NextDocument<Props> {
                 <body>
                     <Main />
                     <NextScript />
+                    {/* Container for modal portal */}
+                    <div id="modal-root" className="w-full h-full"></div>
                 </body>
             </Html>
         );

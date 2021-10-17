@@ -38,7 +38,9 @@ export default function Navbar() {
                     placeholder="Search for a collection"
                 />
 
-                <SearchContext.Provider value={{ searchString }}>
+                <SearchContext.Provider
+                    value={{ searchString, setSearchString }}
+                >
                     <SearchPreview />
                 </SearchContext.Provider>
             </div>

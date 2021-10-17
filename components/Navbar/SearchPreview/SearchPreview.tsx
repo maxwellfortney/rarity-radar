@@ -12,7 +12,7 @@ export default function SearchPreview() {
 
     async function fetchSearchResults() {
         setIsLoading(true);
-        const res = await fetch(`/api/collections/${searchString}`);
+        const res = await fetch(`/api/collections/search/${searchString}`);
 
         if (res.status === 200) {
             const resData = await res.json();
@@ -30,7 +30,7 @@ export default function SearchPreview() {
     return (
         <>
             <CSSTransition
-                in={isLoading || searchString.length > 0}
+                in={searchString.length > 0}
                 timeout={300}
                 classNames="fade"
                 unmountOnExit
@@ -89,15 +89,20 @@ interface IASearchResultRow {
 }
 
 function ASearchResultRow({ collectionName }: IASearchResultRow) {
-    const { searchString } = useContext(SearchContext);
+    const { searchString, setSearchString } = useContext(SearchContext);
 
     const stringParts = collectionName.split(
         new RegExp(`(${searchString})`, "gi")
     );
 
+    async function handleClick(e: any) {
+        setSearchString("");
+    }
+
     return (
         <Link href={`/collections/${collectionName}`}>
             <a
+                onClick={handleClick}
                 className="flex items-center w-full px-2 transition-colors duration-300 rounded-lg border-slightDark hover:bg-slightDark"
                 style={{ borderBottomWidth: "1px" }}
             >
