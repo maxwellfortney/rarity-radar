@@ -3,7 +3,7 @@ export function rainbowGradient(n: number, min: number, max: number) {
         n,
         min,
         max
-    )}, ${rainbowColor(n * 1.5, min, max)})`;
+    )}, ${rainbowColor(n * 1.33, min, max)})`;
 }
 
 export function rainbowColor(n: number, min: number, max: number) {

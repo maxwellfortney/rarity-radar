@@ -71,7 +71,7 @@ export default function Collections({
 }: ICollectionPage) {
     const [page, setPage] = useState(0);
 
-    const [idFilter, setIdFilter] = useState<any>(null);
+    const [idFilter, setIdFilter] = useState<any>("");
 
     const [data, setData] = useState<Array<any>>([]);
 
@@ -83,7 +83,9 @@ export default function Collections({
 
     async function fetchData() {
         const res = await fetch(
-            `/api/collections/${name}?page=${page}&perPage=${PER_PAGE}&sort=${sort}`
+            `/api/collections/${name}?page=${page}&perPage=${PER_PAGE}&sort=${sort}&idFilter=${encodeURIComponent(
+                idFilter
+            )}`
         );
 
         if (res.status === 200) {
@@ -98,17 +100,17 @@ export default function Collections({
         }
     }
 
-    async function searchById() {
-        const res = await fetch(
-            `/api/collections/${name}?idFilter=${idFilter}`
-        );
+    // async function searchById() {
+    //     const res = await fetch(
+    //         `/api/collections/${name}?idFilter=${encodeURIComponent(idFilter)}`
+    //     );
 
-        if (res.status === 200) {
-            const resData = await res.json();
+    //     if (res.status === 200) {
+    //         const resData = await res.json();
 
-            setData(resData);
-        }
-    }
+    //         setData(resData);
+    //     }
+    // }
 
     useEffect(() => {
         setIsReady(true);
@@ -123,7 +125,7 @@ export default function Collections({
             console.log("Sort changed", sort);
             setShouldReset(true);
         }
-    }, [sort]);
+    }, [sort, idFilter]);
 
     useEffect(() => {
         if (isReady) {
@@ -137,14 +139,9 @@ export default function Collections({
         }
     }, [shouldReset]);
 
-    useEffect(() => {
-        console.log(idFilter);
-        if (idFilter === NaN) {
-            fetchData();
-        } else if (idFilter !== null && idFilter !== undefined) {
-            searchById();
-        }
-    }, [idFilter]);
+    // useEffect(() => {
+    //     searchById();
+    // }, [idFilter]);
 
     return (
         <CollectionContext.Provider
@@ -222,7 +219,7 @@ export default function Collections({
                         />
                     ))}
                 </div>
-                {page < Math.round(totalSupply / 25) && idFilter === null && (
+                {page < Math.round(totalSupply / 25) && idFilter.length === 0 && (
                     <button
                         className="px-4 py-2 my-12 text-lg font-semibold text-black transition-opacity duration-300 bg-white rounded-lg hover:opacity-70"
                         onClick={async () => setPage(page + 1)}

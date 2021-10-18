@@ -15,10 +15,8 @@ export default function CollectionController() {
                 <DebounceInput
                     value={idFilter}
                     debounceTimeout={400}
-                    onChange={(e) => setIdFilter(parseInt(e.target.value))}
-                    type="number"
-                    min={10}
-                    max={250}
+                    onChange={(e) => setIdFilter(e.target.value)}
+                    type="text"
                     className="w-full min-w-0 px-2 py-1 font-semibold text-black placeholder-black bg-white rounded-lg outline-none"
                     placeholder="id"
                 />

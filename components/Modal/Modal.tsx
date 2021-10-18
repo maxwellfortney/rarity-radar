@@ -6,9 +6,17 @@ interface IModal {
     isOpen: boolean;
     onClose: Function;
     children: React.ReactNode;
+    allowScroll?: boolean;
 }
 
-export default function Modal({ isOpen, onClose, children }: IModal) {
+export default function Modal({
+    isOpen,
+    onClose,
+    children,
+    allowScroll = false,
+}: IModal) {
+    useDisableBodyScroll(isOpen);
+
     const [isBrowser, setIsBrowser] = useState(false);
 
     const handleCloseClick = (e: any) => {
@@ -46,3 +54,13 @@ export default function Modal({ isOpen, onClose, children }: IModal) {
         return null;
     }
 }
+
+export const useDisableBodyScroll = (open: boolean) => {
+    useEffect(() => {
+        if (open) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+    }, [open]);
+};

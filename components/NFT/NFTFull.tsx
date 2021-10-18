@@ -93,7 +93,17 @@ export default function NFTFull({
                                             <p className="text-sm opacity-70 mr-0.5">
                                                 mean
                                             </p>
-                                            <p className="text-xl font-black leading-tight text-transparent bg-gradient-to-br from-blue-500 to-cyan-400 bg-clip-text">
+                                            <p
+                                                className="text-xl font-black leading-tight text-transparent bg-clip-text"
+                                                style={{
+                                                    backgroundImage:
+                                                        rainbowGradient(
+                                                            nftData.meanPercentage,
+                                                            lowestMeanPercentage,
+                                                            highestMeanPercentage
+                                                        ),
+                                                }}
+                                            >
                                                 {nftData.meanPercentage.toFixed(
                                                     2
                                                 )}
@@ -169,7 +179,7 @@ function AnAttribute({
             <div className="flex justify-between w-11/12 mt-0.5">
                 <p className="font-medium">{value}</p>
                 <p
-                    className="text-xl font-black text-transparent bg-clip-text"
+                    className="text-lg font-black text-transparent bg-clip-text"
                     style={{
                         backgroundImage: rainbowGradient(
                             percentage,
