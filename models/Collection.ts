@@ -6,6 +6,8 @@ export interface ICollection extends Document {
     discordURL?: string;
     twitterURL?: string;
     totalSupply: number;
+    highestMeanPercentage: number;
+    lowestMeanPercentage: number;
     listDate?: number;
     mintPrice?: number;
 }
@@ -16,6 +18,8 @@ export const CollectionSchema: Schema = new mongoose.Schema({
     discordURL: { type: String, required: false },
     twitterURL: { type: String, required: false },
     totalSupply: Number,
+    highestMeanPercentage: Number,
+    lowestMeanPercentage: Number,
     listDate: { type: Number, required: false },
     mintPrice: { type: Number, required: false },
 });

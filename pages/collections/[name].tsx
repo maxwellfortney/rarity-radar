@@ -7,6 +7,10 @@ import { INFT } from "../../models/NFT";
 import { SocialIcon } from "react-social-icons";
 import CollectionController from "../../components/Collection/CollectionController";
 
+import "react-lazy-load-image-component/src/effects/opacity.css";
+
+const PER_PAGE = 25;
+
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     const name = context.query.name;
 
@@ -29,6 +33,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
                     discordURL: resData.discordURL,
                     twitterURL: resData.twitterURL,
                     totalSupply: resData.totalSupply,
+                    highestMeanPercentage: resData.highestMeanPercentage,
+                    lowestMeanPercentage: resData.lowestMeanPercentage,
                 },
             };
         }
@@ -48,6 +54,8 @@ interface ICollectionPage {
     discordURL?: string;
     twitterURL?: string;
     totalSupply: number;
+    highestMeanPercentage: number;
+    lowestMeanPercentage: number;
 }
 
 export const CollectionContext = createContext<any>(null);
@@ -58,6 +66,8 @@ export default function Collections({
     discordURL,
     twitterURL,
     totalSupply,
+    highestMeanPercentage,
+    lowestMeanPercentage,
 }: ICollectionPage) {
     const [page, setPage] = useState(0);
 
@@ -65,13 +75,26 @@ export default function Collections({
 
     const [data, setData] = useState<Array<any>>([]);
 
-    async function fetchData(reset: boolean = false) {
-        const res = await fetch(`/api/collections/${name}?page=${page}`);
+    const [sort, setSort] = useState("rank");
+
+    const [isReady, setIsReady] = useState(false);
+
+    const [shouldReset, setShouldReset] = useState(false);
+
+    async function fetchData() {
+        const res = await fetch(
+            `/api/collections/${name}?page=${page}&perPage=${PER_PAGE}&sort=${sort}`
+        );
 
         if (res.status === 200) {
             const resData = await res.json();
 
-            setData((oldData) => [...oldData, ...resData]);
+            if (shouldReset) {
+                setData(resData);
+                setShouldReset(false);
+            } else {
+                setData((oldData) => [...oldData, ...resData]);
+            }
         }
     }
 
@@ -88,8 +111,31 @@ export default function Collections({
     }
 
     useEffect(() => {
+        setIsReady(true);
+    }, []);
+
+    useEffect(() => {
         fetchData();
     }, [page]);
+
+    useEffect(() => {
+        if (isReady) {
+            console.log("Sort changed", sort);
+            setShouldReset(true);
+        }
+    }, [sort]);
+
+    useEffect(() => {
+        if (isReady) {
+            if (shouldReset) {
+                if (page == 0) {
+                    fetchData();
+                } else {
+                    setPage(0);
+                }
+            }
+        }
+    }, [shouldReset]);
 
     useEffect(() => {
         console.log(idFilter);
@@ -101,7 +147,9 @@ export default function Collections({
     }, [idFilter]);
 
     return (
-        <CollectionContext.Provider value={{ idFilter, setIdFilter }}>
+        <CollectionContext.Provider
+            value={{ idFilter, setIdFilter, sort, setSort }}
+        >
             <div
                 className="flex flex-col w-11/12 mt-12"
                 style={{ minHeight: "calc(100vh - 64px" }}
@@ -162,12 +210,15 @@ export default function Collections({
                     {data.map((nft: INFT) => (
                         <NFTPreview
                             key={nft.name}
-                            name={nft.name}
+                            collectionName={name}
+                            tokenName={nft.name}
                             rank={nft.rank}
                             externalURL={nft.externalURL}
                             image={nft.image}
                             attributes={nft.attributes}
                             meanPercentage={nft.meanPercentage}
+                            highestMeanPercentage={highestMeanPercentage}
+                            lowestMeanPercentage={lowestMeanPercentage}
                         />
                     ))}
                 </div>
