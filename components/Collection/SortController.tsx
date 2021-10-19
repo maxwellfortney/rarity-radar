@@ -52,6 +52,7 @@ export default function SortController() {
                         if (sortType !== sort) {
                             return (
                                 <button
+                                    key={sortType}
                                     onClick={() => {
                                         setSort(sortType);
                                         setIsOpen(false);

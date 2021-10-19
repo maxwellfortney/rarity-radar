@@ -19,11 +19,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             process.env.NEXT_PUBLIC_NODE_ENV === "development"
                 ? "http://localhost:3000/"
                 : process.env.NEXT_PUBLIC_PROD_URL
-        }api/collections/search/${name}`
+        }api/collections/${name}`
     );
 
     if (res.status === 200) {
-        const resData = (await res.json())[0];
+        const resData = await res.json();
 
         if (resData) {
             return {
@@ -83,7 +83,7 @@ export default function Collections({
 
     async function fetchData() {
         const res = await fetch(
-            `/api/collections/${name}?page=${page}&perPage=${PER_PAGE}&sort=${sort}&idFilter=${encodeURIComponent(
+            `/api/collections/${name}/tokens?page=${page}&perPage=${PER_PAGE}&sort=${sort}&idFilter=${encodeURIComponent(
                 idFilter
             )}`
         );
@@ -100,18 +100,6 @@ export default function Collections({
         }
     }
 
-    // async function searchById() {
-    //     const res = await fetch(
-    //         `/api/collections/${name}?idFilter=${encodeURIComponent(idFilter)}`
-    //     );
-
-    //     if (res.status === 200) {
-    //         const resData = await res.json();
-
-    //         setData(resData);
-    //     }
-    // }
-
     useEffect(() => {
         setIsReady(true);
     }, []);
@@ -122,7 +110,6 @@ export default function Collections({
 
     useEffect(() => {
         if (isReady) {
-            console.log("Sort changed", sort);
             setShouldReset(true);
         }
     }, [sort, idFilter]);
@@ -139,16 +126,12 @@ export default function Collections({
         }
     }, [shouldReset]);
 
-    // useEffect(() => {
-    //     searchById();
-    // }, [idFilter]);
-
     return (
         <CollectionContext.Provider
             value={{ idFilter, setIdFilter, sort, setSort }}
         >
             <div
-                className="flex flex-col w-11/12 mt-12"
+                className="flex flex-col w-11/12 pt-12"
                 style={{ minHeight: "calc(100vh - 64px" }}
             >
                 <div className="flex items-center justify-between mb-8">

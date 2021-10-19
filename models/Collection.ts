@@ -2,7 +2,7 @@ import mongoose, { Document, model, Model, Schema } from "mongoose";
 
 export interface ICollection extends Document {
     name: string;
-    externalURL: string;
+    websiteURL?: string;
     discordURL?: string;
     twitterURL?: string;
     totalSupply: number;
@@ -10,11 +10,12 @@ export interface ICollection extends Document {
     lowestMeanPercentage: number;
     listDate?: number;
     mintPrice?: number;
+    previewImages?: Array<string>;
 }
 
 export const CollectionSchema: Schema = new mongoose.Schema({
     name: String,
-    externalURL: String,
+    websiteURL: { type: String, required: false },
     discordURL: { type: String, required: false },
     twitterURL: { type: String, required: false },
     totalSupply: Number,
@@ -22,6 +23,7 @@ export const CollectionSchema: Schema = new mongoose.Schema({
     lowestMeanPercentage: Number,
     listDate: { type: Number, required: false },
     mintPrice: { type: Number, required: false },
+    previewImages: { type: [String], required: false },
 });
 
 export const Collection: Model<ICollection> =

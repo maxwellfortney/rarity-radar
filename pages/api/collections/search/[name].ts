@@ -17,7 +17,7 @@ export default async function handler(
     });
 
     if (collections) {
-        res.status(200).json(collections);
+        res.status(200).json(JSON.stringify(collections, undefined, 4));
         return;
     } else {
         res.status(404);

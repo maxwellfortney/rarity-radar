@@ -24,7 +24,9 @@ export default function SearchPreview() {
     }
 
     useEffect(() => {
-        fetchSearchResults();
+        if (searchString.length > 0) {
+            fetchSearchResults();
+        }
     }, [searchString]);
 
     return (
@@ -36,7 +38,7 @@ export default function SearchPreview() {
                 unmountOnExit
             >
                 <div
-                    className="absolute flex w-full h-12 rounded-lg bg-moreLight"
+                    className="absolute z-10 flex w-full h-12 rounded-lg bg-moreLight"
                     style={{ top: "calc(100% + 12px)" }}
                 >
                     <SwitchTransition>
@@ -65,6 +67,7 @@ export default function SearchPreview() {
                                                 (result: any) => {
                                                     return (
                                                         <ASearchResultRow
+                                                            key={result.name}
                                                             collectionName={
                                                                 result.name
                                                             }
