@@ -71,3 +71,25 @@ input::placeholder {
     opacity: 0;
     transition: opacity 300ms;
 }
+
+/* Slide Up */
+.slideUp-enter {
+    opacity: 0;
+    transform: translateY(100%);
+}
+.slideUp-enter-active {
+    opacity: 1;
+    transform: translateY(0%);
+}
+.slideUp-exit {
+    opacity: 1;
+    transform: translateY(0%);
+}
+.slideUp-exit-active {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+.slideUp-enter-active,
+.slideUp-exit-active {
+    transition: opacity 500ms, transform 500ms;
+}

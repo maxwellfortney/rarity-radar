@@ -31,7 +31,7 @@ export default function Navbar() {
                 </svg>
 
                 <DebounceInput
-                    className="w-full h-full py-2 pr-3 font-medium transition-colors duration-300 bg-transparent rounded-lg outline-none pl-9 bg-moreLight focus:bg-moreLight hover:bg-slightDark"
+                    className="w-full h-full py-2 pr-3 font-medium transition-colors duration-300 rounded-lg outline-none pl-9 bg-moreLight focus:bg-moreLight hover:bg-slightDark"
                     minLength={2}
                     debounceTimeout={500}
                     onChange={(e) => setSearchString(e.target.value)}

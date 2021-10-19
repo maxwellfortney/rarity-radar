@@ -12,6 +12,7 @@
     "colormap": "^2.3.2",
     "mongoose": "^6.0.11",
     "next": "11.1.2",
+    "nodemailer": "^6.7.0",
     "react": "17.0.2",
     "react-debounce-input": "^3.2.5",
     "react-dom": "17.0.2",
@@ -21,6 +22,7 @@
     "swr": "^1.0.1"
   },
   "devDependencies": {
+    "@types/nodemailer": "^6.4.4",
     "@types/react": "17.0.30",
     "@types/react-dom": "^17.0.9",
     "@types/react-lazy-load-image-component": "^1.5.2",
