@@ -184,7 +184,7 @@ export default function Collections({
                     className="grid gap-5"
                     style={{
                         gridTemplateColumns:
-                            "repeat( auto-fit, minmax(200px, 1fr) )",
+                            "repeat( auto-fill, minmax(200px, 1fr) )",
                     }}
                 >
                     {data.map((nft: INFT) => (

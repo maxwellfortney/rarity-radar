@@ -27,7 +27,7 @@ export default function NFTFull({
 
     async function fetchFullNFT() {
         const res = await fetch(
-            `/api/collections/${collectionName}/${encodeURIComponent(
+            `/api/collections/${collectionName}/tokens/${encodeURIComponent(
                 tokenName
             )}`
         );
