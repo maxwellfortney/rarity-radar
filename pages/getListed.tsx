@@ -135,7 +135,7 @@ export default function GetListed() {
 
     return (
         <div
-            className="flex flex-col items-center w-11/12 pt-12"
+            className="flex flex-col items-center w-11/12 pt-12 animate-fadeIn"
             style={{ minHeight: "calc(100vh - 64px)" }}
         >
             <h1 className="self-start text-4xl font-extrabold text-white">

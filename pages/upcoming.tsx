@@ -101,7 +101,7 @@ export default function Upcoming() {
 
     return (
         <div
-            className="flex flex-col items-center w-11/12 pt-12"
+            className="flex flex-col items-center w-11/12 pt-12 animate-fadeIn"
             style={{ minHeight: "calc(100vh - 64px)" }}
         >
             <h1 className="self-start mb-10 text-4xl font-extrabold transition-opacity duration-300 hover:opacity-70 dark:text-white">
@@ -121,7 +121,7 @@ export default function Upcoming() {
                             {months.map((month: any) => {
                                 return (
                                     <Month
-                                        // key={month.month}
+                                        key={month.month}
                                         month={month.month}
                                         days={month.days}
                                     />
