@@ -9,7 +9,7 @@ export default function Navbar() {
     const [searchString, setSearchString] = useState("");
 
     return (
-        <div className="flex items-center justify-between w-full px-6 mt-6 dark:text-white">
+        <div className="flex items-center justify-between w-full px-6 mt-6 dark:text-white animate-fadeIn">
             <div className="flex items-center flex-none">
                 <Link href="/">
                     <a className="relative text-3xl font-black transition-opacity duration-300 hover:opacity-70 radarAnimation">
