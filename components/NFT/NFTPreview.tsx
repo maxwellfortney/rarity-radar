@@ -11,7 +11,7 @@ interface INFT {
     collectionName: string;
     tokenName: string;
     rank: number;
-    externalURL: string;
+    websiteURL: string;
     image: string;
     attributes: Array<any>;
     meanPercentage: number;
@@ -23,7 +23,7 @@ export default function NFTPreview({
     collectionName,
     tokenName,
     rank,
-    externalURL,
+    websiteURL,
     image,
     attributes,
     meanPercentage,

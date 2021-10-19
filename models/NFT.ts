@@ -5,7 +5,7 @@ export interface INFT extends Document {
     collectionName: string;
     name: string;
     description: string;
-    externalURL: string;
+    websiteURL: string;
     image: string;
     attributes: Array<ITrait>;
     meanPercentage: number;
@@ -16,7 +16,7 @@ export const NFTSchema: Schema = new mongoose.Schema({
     collectionName: String,
     name: String,
     description: String,
-    externalURL: String,
+    websiteURL: String,
     image: String,
     attributes: [TraitSchema],
     meanPercentage: Number,

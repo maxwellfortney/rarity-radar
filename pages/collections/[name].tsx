@@ -29,7 +29,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             return {
                 props: {
                     name: resData.name,
-                    externalURL: resData.externalURL,
+                    websiteURL: resData.websiteURL,
                     discordURL: resData.discordURL,
                     twitterURL: resData.twitterURL,
                     totalSupply: resData.totalSupply,
@@ -50,7 +50,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 interface ICollectionPage {
     name: string;
-    externalURL: string;
+    websiteURL: string;
     discordURL?: string;
     twitterURL?: string;
     totalSupply: number;
@@ -62,7 +62,7 @@ export const CollectionContext = createContext<any>(null);
 
 export default function Collections({
     name,
-    externalURL,
+    websiteURL,
     discordURL,
     twitterURL,
     totalSupply,
@@ -136,7 +136,7 @@ export default function Collections({
             >
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center">
-                        <Link href={externalURL}>
+                        <Link href={websiteURL}>
                             <a
                                 target="_blank"
                                 className="text-4xl font-extrabold transition-opacity duration-300 hover:opacity-70 dark:text-white"
@@ -193,7 +193,7 @@ export default function Collections({
                             collectionName={name}
                             tokenName={nft.name}
                             rank={nft.rank}
-                            externalURL={nft.externalURL}
+                            websiteURL={nft.websiteURL}
                             image={nft.image}
                             attributes={nft.attributes}
                             meanPercentage={nft.meanPercentage}
