@@ -54,8 +54,8 @@ interface ICollectionPage {
     discordURL?: string;
     twitterURL?: string;
     totalSupply: number;
-    highestMeanPercentage: number;
-    lowestMeanPercentage: number;
+    highestMeanPercentage?: number;
+    lowestMeanPercentage?: number;
 }
 
 export const CollectionContext = createContext<any>(null);
@@ -112,7 +112,7 @@ export default function Collections({
         if (isReady) {
             setShouldReset(true);
         }
-    }, [sort, idFilter]);
+    }, [sort, idFilter, name]);
 
     useEffect(() => {
         if (isReady) {
@@ -193,7 +193,7 @@ export default function Collections({
                             collectionName={name}
                             tokenName={nft.name}
                             rank={nft.rank}
-                            websiteURL={nft.websiteURL}
+                            externalURL={nft.externalURL}
                             image={nft.image}
                             attributes={nft.attributes}
                             meanPercentage={nft.meanPercentage}

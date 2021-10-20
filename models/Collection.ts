@@ -11,7 +11,6 @@ export interface ICollection extends Document {
     listDate?: number;
     mintPrice?: number;
     previewImages?: Array<string>;
-    contractAddress?: string;
 }
 
 export const CollectionSchema: Schema = new mongoose.Schema({
@@ -25,7 +24,6 @@ export const CollectionSchema: Schema = new mongoose.Schema({
     listDate: { type: Number, required: false },
     mintPrice: { type: Number, required: false },
     previewImages: { type: [String], required: false },
-    contractAddress: { type: String, required: false },
 });
 
 export const Collection: Model<ICollection> =

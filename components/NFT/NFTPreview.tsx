@@ -10,20 +10,20 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 interface INFT {
     collectionName: string;
     tokenName: string;
-    rank: number;
-    websiteURL: string;
+    rank?: number;
+    externalURL?: string;
     image: string;
     attributes: Array<any>;
-    meanPercentage: number;
-    highestMeanPercentage: number;
-    lowestMeanPercentage: number;
+    meanPercentage?: number;
+    highestMeanPercentage?: number;
+    lowestMeanPercentage?: number;
 }
 
 export default function NFTPreview({
     collectionName,
     tokenName,
     rank,
-    websiteURL,
+    externalURL,
     image,
     attributes,
     meanPercentage,
@@ -78,27 +78,37 @@ export default function NFTPreview({
                         {tokenName}
                     </p>
                     <div className="flex items-end self-end justify-end w-full px-1">
-                        <div className="flex items-end mr-1">
-                            <p className="text-sm opacity-70 mr-0.5">mean</p>
-                            <p
-                                className="text-lg font-black leading-tight text-transparent bg-clip-text"
-                                style={{
-                                    backgroundImage: rainbowGradient(
-                                        meanPercentage,
-                                        lowestMeanPercentage,
-                                        highestMeanPercentage
-                                    ),
-                                }}
-                            >
-                                {meanPercentage.toFixed(2)}%
-                            </p>
-                        </div>
-                        <div className="flex items-end">
-                            <p className="text-sm opacity-70 mr-0.5">rank</p>
-                            <p className="text-lg font-black leading-tight text-transparent bg-gradient-to-br from-blue-500 to-cyan-400 bg-clip-text">
-                                {rank}
-                            </p>
-                        </div>
+                        {meanPercentage &&
+                            lowestMeanPercentage &&
+                            highestMeanPercentage && (
+                                <div className="flex items-end mr-1">
+                                    <p className="text-sm opacity-70 mr-0.5">
+                                        mean
+                                    </p>
+                                    <p
+                                        className="text-lg font-black leading-tight text-transparent bg-clip-text"
+                                        style={{
+                                            backgroundImage: rainbowGradient(
+                                                meanPercentage,
+                                                lowestMeanPercentage,
+                                                highestMeanPercentage
+                                            ),
+                                        }}
+                                    >
+                                        {meanPercentage.toFixed(2)}%
+                                    </p>
+                                </div>
+                            )}
+                        {rank && (
+                            <div className="flex items-end">
+                                <p className="text-sm opacity-70 mr-0.5">
+                                    rank
+                                </p>
+                                <p className="text-lg font-black leading-tight text-transparent bg-gradient-to-br from-blue-500 to-cyan-400 bg-clip-text">
+                                    {rank}
+                                </p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </button>

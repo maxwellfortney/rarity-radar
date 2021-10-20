@@ -6,8 +6,8 @@ import Loader from "../Loader";
 interface INFTFull {
     collectionName: string;
     tokenName: string;
-    highestMeanPercentage: number;
-    lowestMeanPercentage: number;
+    highestMeanPercentage?: number;
+    lowestMeanPercentage?: number;
 }
 
 export default function NFTFull({
@@ -53,7 +53,7 @@ export default function NFTFull({
 
     return (
         <div
-            className={`z-10 flex justify-center rounded-lg overflow-hidden items-center w-3/4 md:w-1/2 lg:w-1/3 relative shadow-lg bg-white`}
+            className={`z-10 flex justify-center rounded-xl overflow-hidden items-center w-3/4 md:w-1/2 lg:w-1/3 relative shadow-lg bg-white`}
         >
             {isLoadingData ? (
                 <Loader color={"border-slightDark"} />
@@ -61,13 +61,6 @@ export default function NFTFull({
                 <>
                     {nftData ? (
                         <div className="flex flex-col w-full">
-                            {/* <img
-                                src={nftData.image}
-                                className={`w-full shadow-md rounded-b-xl ${
-                                    isLoadingImage ? "hidden" : "block"
-                                }`}
-                                onLoad={imageLoaded}
-                            /> */}
                             <LazyLoadImage
                                 src={nftData.image}
                                 className={`w-full shadow-md rounded-b-xl ${
@@ -89,27 +82,31 @@ export default function NFTFull({
                                         {nftData.name}
                                     </h1>
                                     <div className="flex items-end self-end justify-end mb-0.5">
-                                        <div className="flex items-end mr-1">
-                                            <p className="text-sm opacity-70 mr-0.5">
-                                                mean
-                                            </p>
-                                            <p
-                                                className="text-xl font-black leading-tight text-transparent bg-clip-text"
-                                                style={{
-                                                    backgroundImage:
-                                                        rainbowGradient(
-                                                            nftData.meanPercentage,
-                                                            lowestMeanPercentage,
-                                                            highestMeanPercentage
-                                                        ),
-                                                }}
-                                            >
-                                                {nftData.meanPercentage.toFixed(
-                                                    2
-                                                )}
-                                                %
-                                            </p>
-                                        </div>
+                                        {nftData.meanPercentage &&
+                                            lowestMeanPercentage &&
+                                            highestMeanPercentage && (
+                                                <div className="flex items-end mr-1">
+                                                    <p className="text-sm opacity-70 mr-0.5">
+                                                        mean
+                                                    </p>
+                                                    <p
+                                                        className="text-xl font-black leading-tight text-transparent bg-clip-text"
+                                                        style={{
+                                                            backgroundImage:
+                                                                rainbowGradient(
+                                                                    nftData.meanPercentage,
+                                                                    lowestMeanPercentage,
+                                                                    highestMeanPercentage
+                                                                ),
+                                                        }}
+                                                    >
+                                                        {nftData.meanPercentage.toFixed(
+                                                            2
+                                                        )}
+                                                        %
+                                                    </p>
+                                                </div>
+                                            )}
                                         <div className="flex items-end">
                                             <p className="text-sm opacity-70 mr-0.5">
                                                 rank
@@ -161,9 +158,9 @@ export default function NFTFull({
 interface IAnAttribute {
     traitType: string;
     value: string;
-    percentage: number;
-    highestMeanPercentage: number;
-    lowestMeanPercentage: number;
+    percentage?: number;
+    highestMeanPercentage?: number;
+    lowestMeanPercentage?: number;
 }
 
 function AnAttribute({
@@ -175,22 +172,26 @@ function AnAttribute({
 }: IAnAttribute) {
     return (
         <div className="flex flex-col items-center w-full">
-            <p className="self-start pl-2 font-bold">{traitType}</p>
-            <div className="flex justify-between w-11/12 mt-0.5">
-                <p className="font-medium">{value}</p>
-                <p
-                    className="text-lg font-black text-transparent bg-clip-text"
-                    style={{
-                        backgroundImage: rainbowGradient(
-                            percentage,
-                            lowestMeanPercentage,
-                            highestMeanPercentage
-                        ),
-                    }}
-                >
-                    {percentage.toFixed(2)}%
-                </p>
-            </div>
+            <p className="self-start pl-2 font-bold leading-tight">
+                {traitType}
+            </p>
+            {percentage && lowestMeanPercentage && highestMeanPercentage && (
+                <div className="flex justify-between w-11/12">
+                    <p className="font-medium">{value}</p>
+                    <p
+                        className="text-lg font-black text-transparent bg-clip-text"
+                        style={{
+                            backgroundImage: rainbowGradient(
+                                percentage,
+                                lowestMeanPercentage,
+                                highestMeanPercentage
+                            ),
+                        }}
+                    >
+                        {percentage.toFixed(2)}%
+                    </p>
+                </div>
+            )}
         </div>
     );
 }
