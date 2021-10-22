@@ -44,6 +44,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
                     highestRarityScore: collectionData.highestRarityScore
                         ? collectionData.highestRarityScore
                         : null,
+                    rarityScore: nftData.rarityScore
+                        ? nftData.rarityScore
+                        : null,
+                    meanPercentage: nftData.meanPercentage
+                        ? nftData.meanPercentage
+                        : null,
                 },
             };
         } else {
@@ -73,6 +79,8 @@ interface IFullNFTPage {
     totalSupply: number;
     lowestRarityScore?: number;
     highestRarityScore?: number;
+    rarityScore?: number;
+    meanPercentage?: number;
 }
 
 export default function FullNFTPage({
@@ -84,6 +92,8 @@ export default function FullNFTPage({
     totalSupply,
     lowestRarityScore,
     highestRarityScore,
+    rarityScore,
+    meanPercentage,
 }: IFullNFTPage) {
     useEffect(() => {
         console.log(lowestRarityScore);
@@ -94,6 +104,43 @@ export default function FullNFTPage({
             <Head>
                 <title>{tokenName} - Rarity Radar</title>
                 <meta name="title" content={`${tokenName} - Rarity Radar`} />
+                {rank && rarityScore && meanPercentage && (
+                    <>
+                        <meta
+                            name="description"
+                            content={`Rank: ${rank
+                                .toString()
+                                .replace(
+                                    /\B(?=(\d{3})+(?!\d))/g,
+                                    ","
+                                )}\nRarity Score: ${rarityScore.toFixed(
+                                2
+                            )}\nMean Percentage: ${meanPercentage.toFixed(2)}%`}
+                        />
+                        <meta
+                            property="og:description"
+                            content={`Rank: ${rank
+                                .toString()
+                                .replace(
+                                    /\B(?=(\d{3})+(?!\d))/g,
+                                    ","
+                                )}\nRarity Score: ${rarityScore.toFixed(
+                                2
+                            )}\nMean Percentage: ${meanPercentage.toFixed(2)}%`}
+                        />
+                        <meta
+                            property="twitter:description"
+                            content={`Rank: ${rank
+                                .toString()
+                                .replace(
+                                    /\B(?=(\d{3})+(?!\d))/g,
+                                    ","
+                                )}\nRarity Score: ${rarityScore.toFixed(
+                                2
+                            )}\nMean Percentage: ${meanPercentage.toFixed(2)}%`}
+                        />
+                    </>
+                )}
 
                 <meta property="og:type" content="website" />
                 <meta
@@ -113,9 +160,22 @@ export default function FullNFTPage({
                 <div className="flex items-center justify-between w-full mb-10">
                     <h1 className="text-4xl font-extrabold ">{tokenName}</h1>
                     <div className="flex items-end">
-                        {rank && (
+                        {rarityScore && (
                             <>
                                 <p className="mr-1 font-medium opacity-70">
+                                    score
+                                </p>
+                                <p className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-cyan-400">
+                                    {rarityScore
+                                        .toFixed(2)
+                                        .toString()
+                                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                </p>
+                            </>
+                        )}
+                        {rank && (
+                            <>
+                                <p className="ml-2 mr-1 font-medium opacity-70">
                                     rank
                                 </p>
                                 <p
@@ -136,15 +196,15 @@ export default function FullNFTPage({
                         )}
                     </div>
                 </div>
-                <div className="flex w-full">
-                    <div className="flex items-center justify-center w-1/2 p-10">
+                <div className="flex flex-col w-full md:flex-row">
+                    <div className="flex items-center justify-center w-full p-2 md:p-7 2xl:p-10 md:w-1/2">
                         <img
                             className="rounded-xl max-w-[750px] w-full"
                             alt={tokenName}
                             src={image}
                         />
                     </div>
-                    <div className="flex flex-col items-center justify-start w-1/2 mt-10">
+                    <div className="flex flex-col items-center justify-start w-full mt-10 md:w-1/2">
                         <h2 className="self-start text-3xl font-bold">
                             attributes
                         </h2>
