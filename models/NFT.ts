@@ -7,6 +7,7 @@ export interface INFT extends Document {
     description: string;
     externalURL?: string;
     image: string;
+    blurHash?: string;
     attributes: Array<ITrait>;
     meanPercentage?: number;
     rank?: number;
@@ -20,6 +21,7 @@ export const NFTSchema: Schema = new mongoose.Schema({
     description: { type: String, required: false },
     externalURL: { type: String, required: false },
     image: String,
+    blurHash: { type: String, required: false },
     attributes: [TraitSchema],
     meanPercentage: { type: Number, required: false },
     rank: { type: Number, required: false },

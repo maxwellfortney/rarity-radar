@@ -226,6 +226,7 @@ export default function Collections({
                             rank={nft.rank}
                             externalURL={nft.externalURL}
                             image={nft.image}
+                            blurHash={nft.blurHash}
                             attributes={nft.attributes}
                             meanPercentage={nft.meanPercentage}
                             rarityScore={nft.rarityScore}
@@ -233,6 +234,7 @@ export default function Collections({
                             lowestMeanPercentage={lowestMeanPercentage}
                             highestRarityScore={highestRarityScore}
                             lowestRarityScore={lowestRarityScore}
+                            totalSupply={totalSupply}
                         />
                     ))}
                 </div>

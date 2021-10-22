@@ -7,7 +7,15 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    const minDate = parseFloat(req.query.minDate as string) || null;
+    let minDate = undefined;
+    if (req.query.minDate) {
+        minDate = parseFloat(req.query.minDate as string);
+    }
+
+    let maxDate = undefined;
+    if (req.query.maxDate) {
+        maxDate = parseFloat(req.query.maxDate as string);
+    }
 
     await dbConnect();
 
@@ -15,6 +23,12 @@ export default async function handler(
     if (minDate) {
         collections = await Collection.find(
             { listDate: { $gt: minDate } },
+            undefined,
+            { sort: { listDate: 1 } }
+        );
+    } else if (maxDate) {
+        collections = await Collection.find(
+            { listDate: { $lt: maxDate } },
             undefined,
             { sort: { listDate: 1 } }
         );

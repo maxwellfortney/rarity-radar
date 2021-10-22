@@ -38,7 +38,7 @@ export default function SearchPreview() {
                 unmountOnExit
             >
                 <div
-                    className="absolute z-10 flex flex-col w-full h-12 rounded-lg bg-moreLight"
+                    className="absolute z-10 flex flex-col w-full overflow-y-auto rounded-lg min-h-12 max-h-96 bg-moreLight"
                     style={{ top: "calc(100% + 12px)" }}
                 >
                     <SwitchTransition>
@@ -106,8 +106,7 @@ function ASearchResultRow({ collectionName }: IASearchResultRow) {
         <Link href={`/collections/${collectionName}`}>
             <a
                 onClick={handleClick}
-                className="flex items-center w-full px-2 py-2 transition-colors duration-300 rounded-lg border-slightDark hover:bg-slightDark"
-                style={{ borderBottomWidth: "1px" }}
+                className="flex items-center w-full px-2 py-2 transition-colors duration-300 hover:bg-slightDark"
             >
                 <span>
                     {stringParts.map((part, i) => (

@@ -12,7 +12,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between w-full px-6 mt-6 dark:text-white animate-fadeIn">
             <div className="flex items-center flex-none">
                 <Link href="/">
-                    <a className="relative text-3xl font-black transition-opacity duration-300  hover:opacity-70 radarAnimation">
+                    <a className="relative text-3xl font-black transition-opacity duration-300 hover:opacity-70 radarAnimation">
                         Rarity Radar
                     </a>
                 </Link>
@@ -55,9 +55,9 @@ export default function Navbar() {
                         get listed
                     </a>
                 </Link>
-                <Link href="/contact">
+                <Link href="/#about">
                     <a className="transition-colors duration-300 border-b-2 border-transparent hover:border-white py-0.5">
-                        contact
+                        about
                     </a>
                 </Link>
             </div>

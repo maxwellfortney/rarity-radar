@@ -8,6 +8,8 @@ import Link from "next/link";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
+import { Blurhash } from "react-blurhash";
+
 var Web3 = require("web3");
 
 import { OpenSeaPort, Network } from "opensea-js";
@@ -21,6 +23,7 @@ interface INFT {
     rank?: number;
     externalURL?: string;
     image: string;
+    blurHash?: string;
     attributes: Array<any>;
     meanPercentage?: number;
     rarityScore?: number;
@@ -29,6 +32,7 @@ interface INFT {
     highestRarityScore?: number;
     lowestRarityScore?: number;
     contractAddress?: string;
+    totalSupply: number;
 }
 
 export default function NFTPreview({
@@ -38,6 +42,7 @@ export default function NFTPreview({
     rank,
     externalURL,
     image,
+    blurHash,
     attributes,
     meanPercentage,
     rarityScore,
@@ -46,6 +51,7 @@ export default function NFTPreview({
     highestRarityScore,
     lowestRarityScore,
     contractAddress,
+    totalSupply,
 }: INFT) {
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
@@ -160,13 +166,27 @@ export default function NFTPreview({
                         alt={tokenName}
                         afterLoad={imageLoaded}
                         effect="opacity"
-                    ></LazyLoadImage>
+                    />
                     <div
                         className={`${
-                            loading ? "block" : "hidden"
-                        } h-56 flex items-center justify-center w-full`}
+                            loading ? "flex" : "hidden"
+                        } flex h-52 relative items-center justify-center w-full`}
                     >
-                        <Loader color={"border-slightDark"} />
+                        {blurHash && (
+                            <Blurhash
+                                hash={blurHash}
+                                width="100%"
+                                height="100%"
+                            />
+                        )}
+                        <Loader
+                            color={"border-slightDark"}
+                            className="absolute"
+                            style={{
+                                left: "calc(50% - 10px)",
+                                borderTopColor: "transparent",
+                            }}
+                        />
                     </div>
                     <div className="flex flex-col items-center w-full p-1">
                         <p className="font-semibold my-0.5 self-start">
@@ -180,17 +200,7 @@ export default function NFTPreview({
                                         <p className="text-sm opacity-70 mr-0.5">
                                             score
                                         </p>
-                                        <p
-                                            className="text-lg font-black leading-tight text-transparent bg-clip-text"
-                                            style={{
-                                                backgroundImage:
-                                                    rainbowGradient(
-                                                        rarityScore,
-                                                        highestRarityScore,
-                                                        lowestRarityScore
-                                                    ),
-                                            }}
-                                        >
+                                        <p className="text-lg font-black leading-tight text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-cyan-400">
                                             {rarityScore.toFixed(2)}
                                         </p>
                                     </div>
@@ -200,8 +210,22 @@ export default function NFTPreview({
                                     <p className="text-sm opacity-70 mr-0.5">
                                         rank
                                     </p>
-                                    <p className="text-lg font-black leading-tight text-transparent bg-gradient-to-br from-blue-500 to-cyan-400 bg-clip-text">
-                                        {rank}
+                                    <p
+                                        className="text-lg font-black leading-tight text-transparent bg-clip-text"
+                                        style={{
+                                            backgroundImage: rainbowGradient(
+                                                rank,
+                                                1,
+                                                totalSupply
+                                            ),
+                                        }}
+                                    >
+                                        {rank
+                                            .toString()
+                                            .replace(
+                                                /\B(?=(\d{3})+(?!\d))/g,
+                                                ","
+                                            )}
                                     </p>
                                 </div>
                             )}

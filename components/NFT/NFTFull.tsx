@@ -109,7 +109,12 @@ export default function NFTFull({
                                                 rank
                                             </p>
                                             <p className="text-xl font-black leading-tight text-transparent bg-gradient-to-br from-blue-500 to-cyan-400 bg-clip-text">
-                                                {nftData.rank}
+                                                {nftData.rank
+                                                    .toString()
+                                                    .replace(
+                                                        /\B(?=(\d{3})+(?!\d))/g,
+                                                        ","
+                                                    )}
                                             </p>
                                         </div>
                                     </div>
