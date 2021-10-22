@@ -4,20 +4,25 @@ import { CSSTransition } from "react-transition-group";
 
 export default function Donate() {
     return (
-        <div className="flex flex-col items-center justify-center flex-1 w-11/12">
-            <div className="flex flex-col items-start">
-                <DonationType
-                    type="ethereum"
-                    address="0xee61C516C9E4468E6F2C4Eb53b8520aDb68c0634"
-                />
-                <DonationType
-                    type="bitcoin"
-                    address="0xee61C516C9E4468E6F2C4Eb53b8520aDb68c0634"
-                />
-                <DonationType
-                    type="solana"
-                    address="ELL2uxweAAx83QZyEfWEZwa8ZHEyNG2N2nYhkxzyAwcZ"
-                />
+        <div className="flex flex-col items-center flex-1 w-11/12 animate-fadeIn">
+            <h2 className="self-start mt-12 text-4xl font-extrabold text-white">
+                donate
+            </h2>
+            <div className="flex flex-col items-center justify-center flex-1 w-11/12">
+                <div className="flex flex-col items-start">
+                    <DonationType
+                        type="ethereum"
+                        address="0xee61C516C9E4468E6F2C4Eb53b8520aDb68c0634"
+                    />
+                    <DonationType
+                        type="bitcoin"
+                        address="3LBuiwFYAbnE3DayqVZftkHpFmFsCRTvjC"
+                    />
+                    <DonationType
+                        type="solana"
+                        address="ELL2uxweAAx83QZyEfWEZwa8ZHEyNG2N2nYhkxzyAwcZ"
+                    />
+                </div>
             </div>
         </div>
     );

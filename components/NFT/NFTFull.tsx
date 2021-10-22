@@ -72,7 +72,10 @@ export default function NFTFull({
                                     isLoadingImage ? "block" : "hidden"
                                 } h-56 flex items-center justify-center w-full`}
                             >
-                                <Loader color={"border-slightDark"} />
+                                <Loader
+                                    color={"border-slightDark"}
+                                    className="py-16"
+                                />
                             </div>
                             <div className="flex flex-col w-full p-3">
                                 <div className="flex justify-between w-full">
