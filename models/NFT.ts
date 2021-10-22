@@ -10,6 +10,8 @@ export interface INFT extends Document {
     attributes: Array<ITrait>;
     meanPercentage?: number;
     rank?: number;
+    rarityScore?: number;
+    tokenId?: number;
 }
 
 export const NFTSchema: Schema = new mongoose.Schema({
@@ -21,6 +23,8 @@ export const NFTSchema: Schema = new mongoose.Schema({
     attributes: [TraitSchema],
     meanPercentage: { type: Number, required: false },
     rank: { type: Number, required: false },
+    rarityScore: { type: Number, required: false },
+    tokenId: { type: Number, required: false },
 });
 
 export const NFT: Model<INFT> = mongoose.models.NFT || model("NFT", NFTSchema);

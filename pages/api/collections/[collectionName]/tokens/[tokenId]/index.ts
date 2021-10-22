@@ -8,14 +8,14 @@ export default async function handler(
     res: NextApiResponse
 ) {
     const collectionName = req.query.collectionName as string;
-    const tokenName = req.query.tokenName as string;
+    const tokenId = parseInt(req.query.tokenId as string);
 
     console.log(collectionName);
-    console.log(tokenName);
+    console.log(tokenId);
 
     await dbConnect();
 
-    const nft = await NFT.findOne({ collectionName, name: tokenName });
+    const nft = await NFT.findOne({ collectionName, tokenId: tokenId });
 
     if (nft) {
         res.status(200).json(JSON.stringify(nft, undefined, 4));

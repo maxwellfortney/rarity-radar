@@ -5,6 +5,7 @@ export interface ITrait extends Document {
     traitType: string;
     value: string;
     percentage?: number;
+    score?: number;
 }
 
 export const TraitSchema: Schema = new mongoose.Schema({
@@ -12,6 +13,7 @@ export const TraitSchema: Schema = new mongoose.Schema({
     traitType: String,
     value: String,
     percentage: { type: Number, required: false },
+    score: { type: Number, required: false },
 });
 
 export const Trait: Model<ITrait> =

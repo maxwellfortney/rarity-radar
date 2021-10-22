@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { useEffect } from "react";
 import { pageview } from "../libs/GA/gtag";
 import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
     useEffect(() => {
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <div className="flex flex-col items-center w-full min-h-screen bg-gradient-to-tr dark:from-mainDark dark:to-slightDark">
             <Navbar />
             <Component {...pageProps} />
+            <Footer />
         </div>
     );
 }

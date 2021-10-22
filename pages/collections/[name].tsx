@@ -1,7 +1,6 @@
 import { GetServerSidePropsContext } from "next";
 import { createContext, useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import useSWR from "swr";
 import NFTPreview from "../../components/NFT/NFTPreview";
 import { INFT } from "../../models/NFT";
 import { SocialIcon } from "react-social-icons";
@@ -26,15 +25,31 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         const resData = await res.json();
 
         if (resData) {
+            console.log(resData);
             return {
                 props: {
                     name: resData.name,
-                    websiteURL: resData.websiteURL,
-                    discordURL: resData.discordURL,
-                    twitterURL: resData.twitterURL,
-                    totalSupply: resData.totalSupply,
-                    highestMeanPercentage: resData.highestMeanPercentage,
-                    lowestMeanPercentage: resData.lowestMeanPercentage,
+                    websiteURL: resData.websiteURL ? resData.websiteURL : null,
+                    discordURL: resData.discordURL ? resData.discordURL : null,
+                    twitterURL: resData.twitterURL ? resData.twitterURL : null,
+                    totalSupply: resData.totalSupply
+                        ? resData.totalSupply
+                        : null,
+                    highestMeanPercentage: resData.highestMeanPercentage
+                        ? resData.highestMeanPercentage
+                        : null,
+                    lowestMeanPercentage: resData.lowestMeanPercentage
+                        ? resData.lowestMeanPercentage
+                        : null,
+                    highestRarityScore: resData.highestRarityScore
+                        ? resData.highestRarityScore
+                        : null,
+                    lowestRarityScore: resData.lowestRarityScore
+                        ? resData.lowestRarityScore
+                        : null,
+                    contractAddress: resData.contractAddress
+                        ? resData.contractAddress
+                        : null,
                 },
             };
         }
@@ -50,12 +65,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 interface ICollectionPage {
     name: string;
-    websiteURL: string;
+    websiteURL?: string;
     discordURL?: string;
     twitterURL?: string;
     totalSupply: number;
     highestMeanPercentage?: number;
     lowestMeanPercentage?: number;
+    highestRarityScore?: number;
+    lowestRarityScore?: number;
+    contractAddress?: string;
 }
 
 export const CollectionContext = createContext<any>(null);
@@ -68,6 +86,9 @@ export default function Collections({
     totalSupply,
     highestMeanPercentage,
     lowestMeanPercentage,
+    highestRarityScore,
+    lowestRarityScore,
+    contractAddress,
 }: ICollectionPage) {
     const [page, setPage] = useState(0);
 
@@ -91,6 +112,7 @@ export default function Collections({
         if (res.status === 200) {
             const resData = await res.json();
 
+            console.log(resData);
             if (shouldReset) {
                 setData(resData);
                 setShouldReset(false);
@@ -136,14 +158,21 @@ export default function Collections({
             >
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center">
-                        <Link href={websiteURL}>
-                            <a
-                                target="_blank"
-                                className="text-4xl font-extrabold transition-opacity duration-300 hover:opacity-70 dark:text-white"
-                            >
+                        {websiteURL ? (
+                            <Link href={websiteURL}>
+                                <a
+                                    target="_blank"
+                                    className="text-4xl font-extrabold transition-opacity duration-300 hover:opacity-70 dark:text-white"
+                                >
+                                    {name}
+                                </a>
+                            </Link>
+                        ) : (
+                            <h1 className="text-4xl font-extrabold transition-opacity duration-300 hover:opacity-70 dark:text-white">
                                 {name}
-                            </a>
-                        </Link>
+                            </h1>
+                        )}
+
                         <div className="flex items-center self-end mb-1">
                             {twitterURL && (
                                 <SocialIcon
@@ -189,16 +218,21 @@ export default function Collections({
                 >
                     {data.map((nft: INFT) => (
                         <NFTPreview
+                            contractAddress={contractAddress}
                             key={nft.name}
                             collectionName={name}
                             tokenName={nft.name}
+                            tokenId={nft.tokenId}
                             rank={nft.rank}
                             externalURL={nft.externalURL}
                             image={nft.image}
                             attributes={nft.attributes}
                             meanPercentage={nft.meanPercentage}
+                            rarityScore={nft.rarityScore}
                             highestMeanPercentage={highestMeanPercentage}
                             lowestMeanPercentage={lowestMeanPercentage}
+                            highestRarityScore={highestRarityScore}
+                            lowestRarityScore={lowestRarityScore}
                         />
                     ))}
                 </div>

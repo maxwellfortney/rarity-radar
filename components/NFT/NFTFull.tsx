@@ -6,15 +6,21 @@ import Loader from "../Loader";
 interface INFTFull {
     collectionName: string;
     tokenName: string;
+    tokenId?: number;
     highestMeanPercentage?: number;
     lowestMeanPercentage?: number;
+    highestRarityScore?: number;
+    lowestRarityScore?: number;
 }
 
 export default function NFTFull({
     collectionName,
     tokenName,
+    tokenId,
     highestMeanPercentage,
     lowestMeanPercentage,
+    highestRarityScore,
+    lowestRarityScore,
 }: INFTFull) {
     const [isLoadingData, setIsLoadingData] = useState(true);
     const [isLoadingImage, setIsLoadingImage] = useState(true);
@@ -28,7 +34,7 @@ export default function NFTFull({
     async function fetchFullNFT() {
         const res = await fetch(
             `/api/collections/${collectionName}/tokens/${encodeURIComponent(
-                tokenName
+                tokenId ? tokenId : tokenName
             )}`
         );
 
@@ -40,14 +46,6 @@ export default function NFTFull({
     }
 
     useEffect(() => {
-        console.log(collectionName);
-        console.log(tokenName);
-
-        console.log(
-            `/api/collections/${collectionName}/${encodeURIComponent(
-                tokenName
-            )}`
-        );
         fetchFullNFT();
     }, []);
 
@@ -82,28 +80,27 @@ export default function NFTFull({
                                         {nftData.name}
                                     </h1>
                                     <div className="flex items-end self-end justify-end mb-0.5">
-                                        {nftData.meanPercentage &&
-                                            lowestMeanPercentage &&
-                                            highestMeanPercentage && (
+                                        {nftData.rarityScore &&
+                                            lowestRarityScore &&
+                                            highestRarityScore && (
                                                 <div className="flex items-end mr-1">
                                                     <p className="text-sm opacity-70 mr-0.5">
-                                                        mean
+                                                        score
                                                     </p>
                                                     <p
                                                         className="text-xl font-black leading-tight text-transparent bg-clip-text"
                                                         style={{
                                                             backgroundImage:
                                                                 rainbowGradient(
-                                                                    nftData.meanPercentage,
-                                                                    lowestMeanPercentage,
-                                                                    highestMeanPercentage
+                                                                    nftData.rarityScore,
+                                                                    highestRarityScore,
+                                                                    lowestRarityScore
                                                                 ),
                                                         }}
                                                     >
-                                                        {nftData.meanPercentage.toFixed(
+                                                        {nftData.rarityScore.toFixed(
                                                             2
                                                         )}
-                                                        %
                                                     </p>
                                                 </div>
                                             )}
@@ -133,11 +130,18 @@ export default function NFTFull({
                                                     percentage={
                                                         attribute.percentage
                                                     }
+                                                    score={attribute.score}
                                                     highestMeanPercentage={
                                                         highestMeanPercentage
                                                     }
                                                     lowestMeanPercentage={
                                                         lowestMeanPercentage
+                                                    }
+                                                    highestRarityScore={
+                                                        highestRarityScore
+                                                    }
+                                                    lowestRarityScore={
+                                                        lowestRarityScore
                                                     }
                                                 />
                                             );
@@ -159,36 +163,42 @@ interface IAnAttribute {
     traitType: string;
     value: string;
     percentage?: number;
+    score?: number;
     highestMeanPercentage?: number;
     lowestMeanPercentage?: number;
+    highestRarityScore?: number;
+    lowestRarityScore?: number;
 }
 
 function AnAttribute({
     traitType,
     value,
     percentage,
+    score,
     highestMeanPercentage,
     lowestMeanPercentage,
+    highestRarityScore,
+    lowestRarityScore,
 }: IAnAttribute) {
     return (
         <div className="flex flex-col items-center w-full">
             <p className="self-start pl-2 font-bold leading-tight">
                 {traitType}
             </p>
-            {percentage && lowestMeanPercentage && highestMeanPercentage && (
+            {score && lowestRarityScore && highestRarityScore && (
                 <div className="flex justify-between w-11/12">
                     <p className="font-medium">{value}</p>
                     <p
                         className="text-lg font-black text-transparent bg-clip-text"
                         style={{
                             backgroundImage: rainbowGradient(
-                                percentage,
-                                lowestMeanPercentage,
-                                highestMeanPercentage
+                                score,
+                                highestRarityScore,
+                                lowestRarityScore
                             ),
                         }}
                     >
-                        {percentage.toFixed(2)}%
+                        {score.toFixed(2)}
                     </p>
                 </div>
             )}
