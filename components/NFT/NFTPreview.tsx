@@ -181,7 +181,7 @@ export default function NFTPreview({
                         )}
                         <Loader
                             color={"border-slightDark"}
-                            className="absolute"
+                            className="absolute z-10"
                             style={{
                                 left: "calc(50% - 10px)",
                                 borderTopColor: "transparent",
