@@ -1,10 +1,10 @@
 import { GetServerSidePropsContext } from "next";
 import { createContext, useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import NFTPreview from "../../components/NFT/NFTPreview";
-import { INFT } from "../../models/NFT";
+import NFTPreview from "../../../components/NFT/NFTPreview";
+import { INFT } from "../../../models/NFT";
 import { SocialIcon } from "react-social-icons";
-import CollectionController from "../../components/Collection/CollectionController";
+import CollectionController from "../../../components/Collection/CollectionController";
 
 import "react-lazy-load-image-component/src/effects/opacity.css";
 
