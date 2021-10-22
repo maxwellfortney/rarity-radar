@@ -139,7 +139,7 @@ export default function FullNFTPage({
                 <div className="flex w-full">
                     <div className="flex items-center justify-center w-1/2 p-10">
                         <img
-                            className="rounded-xl"
+                            className="rounded-xl max-w-[750px] w-full"
                             alt={tokenName}
                             src={image}
                         />
