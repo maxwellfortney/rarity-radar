@@ -231,8 +231,8 @@ export default function FullNFTPage({
                                                         highestRarityScore
                                                             ? rainbowGradient(
                                                                   attribute.score,
-                                                                  lowestRarityScore,
-                                                                  highestRarityScore
+                                                                  highestRarityScore,
+                                                                  lowestRarityScore
                                                               )
                                                             : undefined,
                                                 }}
