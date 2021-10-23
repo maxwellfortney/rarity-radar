@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { pageview } from "../libs/GA/gtag";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
+import MobileNavbar from "../components/Navbar/MobileNavbar/MobileNavbar";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
     useEffect(() => {
@@ -18,7 +19,12 @@ function MyApp({ Component, pageProps, router }: AppProps) {
 
     return (
         <div className="flex flex-col items-center w-full min-h-screen bg-gradient-to-tr dark:from-mainDark dark:to-slightDark">
-            <Navbar />
+            <div className="hidden w-full md:flex">
+                <Navbar />
+            </div>
+            <div className="flex w-full md:hidden">
+                <MobileNavbar />
+            </div>
             <Component {...pageProps} />
             <Footer />
         </div>

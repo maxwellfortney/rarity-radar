@@ -38,11 +38,10 @@ export default function Navbar() {
                     placeholder="Search for a collection"
                 />
 
-                <SearchContext.Provider
-                    value={{ searchString, setSearchString }}
-                >
-                    <SearchPreview />
-                </SearchContext.Provider>
+                <SearchPreview
+                    searchString={searchString}
+                    setSearchString={setSearchString}
+                />
             </div>
             <div className="flex items-center flex-none space-x-3 text-lg font-semibold">
                 <Link href="/upcoming">

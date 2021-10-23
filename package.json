@@ -12,6 +12,7 @@
     "@types/react-icons": "^3.0.0",
     "blurhash": "^1.1.4",
     "colormap": "^2.3.2",
+    "hamburger-react": "^2.4.1",
     "mongoose": "^6.0.11",
     "next": "11.1.2",
     "nodemailer": "^6.7.0",

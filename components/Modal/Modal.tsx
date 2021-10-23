@@ -15,8 +15,6 @@ export default function Modal({
     children,
     allowScroll = false,
 }: IModal) {
-    useDisableBodyScroll(isOpen);
-
     const [isBrowser, setIsBrowser] = useState(false);
 
     const handleCloseClick = (e: any) => {
@@ -54,13 +52,3 @@ export default function Modal({
         return null;
     }
 }
-
-export const useDisableBodyScroll = (open: boolean) => {
-    useEffect(() => {
-        if (open) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "unset";
-        }
-    }, [open]);
-};

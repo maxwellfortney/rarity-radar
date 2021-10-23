@@ -4,9 +4,11 @@ import { SearchContext } from "../Navbar";
 
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 
-export default function SearchPreview() {
-    const { searchString } = useContext(SearchContext);
-
+export default function SearchPreview({
+    searchString,
+    setSearchString,
+    setSearchExpanded,
+}: any) {
     const [isLoading, setIsLoading] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
 
@@ -71,6 +73,15 @@ export default function SearchPreview() {
                                                             collectionName={
                                                                 result.name
                                                             }
+                                                            searchString={
+                                                                searchString
+                                                            }
+                                                            setSearchString={
+                                                                setSearchResults
+                                                            }
+                                                            setSearchExpanded={
+                                                                setSearchExpanded
+                                                            }
                                                         />
                                                     );
                                                 }
@@ -89,17 +100,26 @@ export default function SearchPreview() {
 
 interface IASearchResultRow {
     collectionName: string;
+    searchString: string;
+    setSearchString: any;
+    setSearchExpanded?: any;
 }
 
-function ASearchResultRow({ collectionName }: IASearchResultRow) {
-    const { searchString, setSearchString } = useContext(SearchContext);
-
+function ASearchResultRow({
+    collectionName,
+    searchString,
+    setSearchString,
+    setSearchExpanded,
+}: IASearchResultRow) {
     const stringParts = collectionName.split(
         new RegExp(`(${searchString})`, "gi")
     );
 
     async function handleClick(e: any) {
         setSearchString("");
+        if (setSearchExpanded) {
+            setSearchExpanded(false);
+        }
     }
 
     return (
