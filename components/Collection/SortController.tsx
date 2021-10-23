@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { CollectionContext } from "../../pages/collections/[name]";
 
-const sortTypes = ["rank", "-rank"];
+const sortTypes = ["rank", "-rank", "tokenId", "-tokenId"];
 
 export default function SortController() {
     const { sort, setSort } = useContext(CollectionContext);
@@ -45,7 +45,7 @@ export default function SortController() {
                 unmountOnExit
             >
                 <div
-                    className="absolute z-10 flex min-w-full text-black bg-white rounded-lg shadow-lg"
+                    className="absolute z-10 flex flex-col min-w-full text-black bg-white rounded-lg shadow-lg"
                     style={{ top: "calc(100% + 12px)" }}
                 >
                     {sortTypes.map((sortType) => {
@@ -57,9 +57,9 @@ export default function SortController() {
                                         setSort(sortType);
                                         setIsOpen(false);
                                     }}
-                                    className="flex w-full px-3 py-1 font-semibold transition-opacity duration-300 hover:opacity-70"
+                                    className="flex flex-none w-full px-3 py-1 font-semibold transition-opacity duration-300 hover:opacity-70"
                                 >
-                                    <p>{sortType}</p>
+                                    <p className="flex-none">{sortType}</p>
                                 </button>
                             );
                         }

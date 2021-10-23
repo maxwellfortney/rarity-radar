@@ -30,7 +30,7 @@ export default function Footer() {
                     style={{ height: 45, width: 45 }}
                 />
             </div>
-            <p className="mt-4 font-medium">
+            <p className="mt-4 font-medium text-center">
                 created by{" "}
                 <Link href="https://github.com/maxwellfortney">
                     <a

@@ -69,7 +69,7 @@ function AnUpcomingPreview({ collection }: any) {
         <>
             <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
                 <div
-                    className={`z-10 p-4 flex flex-col justify-center rounded-lg overflow-hidden items-center w-11/12 md:w-2/3 lg:w-1/3 relative shadow-lg bg-white`}
+                    className={`z-10 p-4 flex flex-col justify-center rounded-lg overflow-hidden items-center w-full relative shadow-lg bg-white`}
                 >
                     <div className="flex justify-between w-full">
                         <p className="self-start text-3xl font-black">

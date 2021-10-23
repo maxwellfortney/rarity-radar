@@ -13,7 +13,7 @@ export default function Month({ month, days }: IMonth) {
                 {monthNames[month]}
             </h2>
             <div
-                className="grid w-11/12 gap-3 mb-10"
+                className="grid w-full gap-3 mb-10"
                 style={{
                     gridTemplateColumns:
                         "repeat(auto-fill, minmax(210px, 1fr))",
