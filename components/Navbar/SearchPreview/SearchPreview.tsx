@@ -77,7 +77,7 @@ export default function SearchPreview({
                                                                 searchString
                                                             }
                                                             setSearchString={
-                                                                setSearchResults
+                                                                setSearchString
                                                             }
                                                             setSearchExpanded={
                                                                 setSearchExpanded
