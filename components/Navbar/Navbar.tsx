@@ -45,17 +45,17 @@ export default function Navbar() {
             </div>
             <div className="flex items-center flex-none space-x-3 text-lg font-semibold">
                 <Link href="/upcoming">
-                    <a className="transition-colors duration-300 border-b-2 border-transparent hover:border-white py-0.5">
+                    <a className="transition-colors duration-300 border-b-2 border-transparent hover:border-black dark:hover:border-white py-0.5">
                         upcoming
                     </a>
                 </Link>
                 <Link href="/getListed">
-                    <a className="transition-colors duration-300 border-b-2 border-transparent hover:border-white py-0.5">
+                    <a className="transition-colors duration-300 border-b-2 border-transparent hover:border-black dark:hover:border-white py-0.5">
                         get listed
                     </a>
                 </Link>
                 <Link href="/#about">
-                    <a className="transition-colors duration-300 border-b-2 border-transparent hover:border-white py-0.5">
+                    <a className="transition-colors duration-300 border-b-2 border-transparent hover:border-black dark:hover:border-white py-0.5">
                         about
                     </a>
                 </Link>
