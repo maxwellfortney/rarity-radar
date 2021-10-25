@@ -11,7 +11,7 @@ export default function Hero() {
             </h1>
 
             <Link href="/collections">
-                <a className="px-4 py-2 text-lg font-semibold text-black transition-opacity duration-300 bg-white rounded-lg hover:opacity-70 mt-14">
+                <a className="px-4 py-2 text-lg font-semibold text-white transition-opacity duration-300 rounded-lg shadow-md dark:text-black bg-moreLight dark:bg-white hover:opacity-70 mt-14">
                     view collections
                 </a>
             </Link>

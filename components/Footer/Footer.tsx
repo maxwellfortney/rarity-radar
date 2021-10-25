@@ -3,7 +3,7 @@ import { SocialIcon } from "react-social-icons";
 
 export default function Footer() {
     return (
-        <div className="flex flex-col items-center w-full px-6 pt-10 pb-2 text-white">
+        <div className="flex flex-col items-center w-full px-6 pt-10 pb-2 dark:text-white">
             {/* <div className="flex items-center justify-between w-full">
                 <Link href="/">
                     <a className="relative text-6xl font-black transition-opacity duration-300 hover:opacity-70 radarAnimation">

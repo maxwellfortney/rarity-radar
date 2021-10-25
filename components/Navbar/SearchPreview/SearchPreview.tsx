@@ -40,7 +40,7 @@ export default function SearchPreview({
                 unmountOnExit
             >
                 <div
-                    className="absolute z-10 flex flex-col w-full overflow-y-auto rounded-lg min-h-12 max-h-96 bg-moreLight"
+                    className="absolute z-10 flex flex-col w-full overflow-y-auto text-white rounded-lg min-h-12 max-h-96 bg-moreLight"
                     style={{ top: "calc(100% + 12px)" }}
                 >
                     <SwitchTransition>
@@ -60,7 +60,7 @@ export default function SearchPreview({
                             ) : (
                                 <>
                                     {searchResults.length === 0 ? (
-                                        <div className="flex items-center justify-center w-full font-semibold">
+                                        <div className="flex items-center justify-center w-full py-2 font-semibold">
                                             no results
                                         </div>
                                     ) : (

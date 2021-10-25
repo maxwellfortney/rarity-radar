@@ -19,7 +19,7 @@ export default function SortController() {
                 <p className="mb-1 leading-none">sort</p>
                 <button
                     onClick={toggleOpen}
-                    className="flex items-center py-1 pl-3 pr-2 font-semibold text-black transition-opacity duration-300 bg-white rounded-lg hover:opacity-70"
+                    className="flex items-center py-1 pl-3 pr-2 font-semibold text-black transition-opacity duration-300 bg-white rounded-lg shadow-md hover:opacity-70"
                 >
                     <p>{sort}</p>
                     <svg

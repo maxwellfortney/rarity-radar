@@ -5,7 +5,7 @@ import { CSSTransition } from "react-transition-group";
 export default function Donate() {
     return (
         <div className="flex flex-col items-center flex-1 w-11/12 animate-fadeIn">
-            <h2 className="self-start mt-12 text-4xl font-extrabold text-white">
+            <h2 className="self-start mt-12 text-4xl font-extrabold dark:text-white">
                 donate
             </h2>
             <div className="flex flex-col items-center justify-center flex-1 w-11/12">
@@ -60,7 +60,7 @@ function DonationType({ type, address }: any) {
                     navigator.clipboard.writeText(address);
                     setDidCopy(true);
                 }}
-                className="relative flex px-2 py-1 ml-2 font-bold transition-opacity duration-300 bg-white rounded-lg cursor-pointer hover:opacity-50"
+                className="relative flex px-2 py-1 ml-2 font-bold transition-opacity duration-300 bg-white rounded-lg shadow-md cursor-pointer hover:opacity-50"
             >
                 <p>{address}</p>
                 <CSSTransition

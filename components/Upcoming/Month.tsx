@@ -9,7 +9,7 @@ interface IMonth {
 export default function Month({ month, days }: IMonth) {
     return (
         <>
-            <h2 className="mb-1 text-lg font-black text-white">
+            <h2 className="mb-1 text-lg font-black dark:text-white">
                 {monthNames[month]}
             </h2>
             <div

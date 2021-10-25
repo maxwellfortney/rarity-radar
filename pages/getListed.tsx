@@ -15,7 +15,7 @@ const questions = [
         placeholder: "smart contract address",
         inputType: "text",
         pattern: "0x[a-fA-F0-9]{40}",
-        errorMessage: "please enter a ETH address",
+        errorMessage: "please enter an ETH address",
     },
     {
         text: "What is your projects total supply?",
@@ -138,7 +138,7 @@ export default function GetListed() {
             className="flex flex-col items-center w-11/12 pt-12 animate-fadeIn"
             style={{ minHeight: "calc(100vh - 64px)" }}
         >
-            <h1 className="self-start text-4xl font-extrabold text-white">
+            <h1 className="self-start text-4xl font-extrabold dark:text-white">
                 get listed
             </h1>
             <div className="flex flex-col items-center flex-1 w-full overflow-hidden mb-14">
@@ -215,7 +215,7 @@ export default function GetListed() {
                         !isInputValid || currentAnswer.length === 0
                             ? "opacity-70"
                             : ""
-                    } justify-center pl-4 pr-2 text-lg py-1.5 ml-auto font-semibold text-black transition-opacity duration-300 bg-white rounded-md hover:opacity-70`}
+                    } justify-center pl-4 pr-2 text-lg py-1.5 ml-auto font-semibold text-white dark:text-black transition-opacity duration-300 bg-moreLight dark:bg-white rounded-md hover:opacity-70`}
                 >
                     <p>{questionIndex === NUM_QUESTIONS ? "submit" : "next"}</p>
                     <svg
@@ -287,7 +287,7 @@ function AQuestion({
             </div>
             <input
                 type={question.inputType}
-                className="text-black font-semibold rounded-lg py-1.5 px-2 w-full placeholder-black"
+                className="text-white dark:text-black dark:bg-white bg-moreLight font-semibold rounded-lg py-1.5 px-2 w-full placeholder-white dark:placeholder-black"
                 placeholder={question.placeholder}
                 value={currentAnswer}
                 onChange={handleChange}

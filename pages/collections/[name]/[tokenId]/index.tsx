@@ -156,7 +156,7 @@ export default function FullNFTPage({
                 />
                 <meta property="twitter:image" content={image} />
             </Head>
-            <div className="flex flex-col items-center flex-1 w-11/12 mt-12 text-white animate-fadeIn">
+            <div className="flex flex-col items-center flex-1 w-11/12 mt-12 dark:text-white animate-fadeIn">
                 <div className="flex items-center justify-between w-full mb-10">
                     <h1 className="text-4xl font-extrabold ">{tokenName}</h1>
                     <div className="flex items-end">
@@ -223,20 +223,7 @@ export default function FullNFTPage({
                                             <p className="text-lg font-medium">
                                                 {attribute.value}
                                             </p>
-                                            <p
-                                                className="text-xl font-extrabold text-transparent bg-clip-text"
-                                                style={{
-                                                    backgroundImage:
-                                                        lowestRarityScore &&
-                                                        highestRarityScore
-                                                            ? rainbowGradient(
-                                                                  attribute.score,
-                                                                  highestRarityScore,
-                                                                  lowestRarityScore
-                                                              )
-                                                            : undefined,
-                                                }}
-                                            >
+                                            <p className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-cyan-400">
                                                 {attribute.score.toFixed(2)}
                                             </p>
                                         </div>

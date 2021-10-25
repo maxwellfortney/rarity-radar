@@ -141,7 +141,7 @@ export default function NFTPreview({
             <Link href={`/collections/${collectionName}/${tokenId}`}>
                 <a
                     style={{ maxWidth: "600px" }}
-                    className="relative flex flex-col overflow-hidden duration-200 transform bg-white rounded-xl hover:scale-105"
+                    className="relative flex flex-col overflow-hidden duration-200 transform bg-white shadow-md rounded-xl hover:scale-105"
                 >
                     <div
                         onClick={toggleModal}
