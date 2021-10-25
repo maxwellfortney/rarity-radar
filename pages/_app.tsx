@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     }, []);
 
     return (
-        <div className="flex flex-col items-center w-full min-h-screen bg-gradient-to-tr dark:from-mainDark dark:to-slightDark from-[#D7D7D7] to-white">
+        <div className="flex flex-col items-center w-full min-h-screen bg-gradient-to-tr dark:from-mainDark dark:to-slightDark from-[#A7ACD9] to-white">
             <div className="hidden w-full md:flex">
                 <Navbar />
             </div>

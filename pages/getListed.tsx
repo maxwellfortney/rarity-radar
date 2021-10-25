@@ -266,7 +266,7 @@ function AQuestion({
 
     return (
         <>
-            <div className="flex self-start justify-start mb-5">
+            <div className="block self-start mb-5">
                 <h2 className="text-3xl font-black text-transparent bg-gradient-to-br bg-clip-text from-blue-500 to-cyan-400">
                     {question.text}
                 </h2>
@@ -284,15 +284,15 @@ function AQuestion({
                         {question.errorMessage}
                     </p>
                 </CSSTransition>
-            </div>
             <input
                 type={question.inputType}
-                className="text-white dark:text-black dark:bg-white bg-moreLight font-semibold rounded-lg py-1.5 px-2 w-full placeholder-white dark:placeholder-black"
+                className="text-white mt-3 dark:text-black dark:bg-white bg-moreLight font-semibold rounded-lg py-1.5 px-2 w-2/3 placeholder-white dark:placeholder-black"
                 placeholder={question.placeholder}
                 value={currentAnswer}
                 onChange={handleChange}
                 min={question.min}
             />
+            </div>
         </>
     );
 }
