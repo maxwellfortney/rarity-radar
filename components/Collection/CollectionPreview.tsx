@@ -47,7 +47,7 @@ export default function CollectionPreview({
 
     return (
         <Link href={`/collections/${collectionName}`}>
-            <a className="flex flex-col items-center w-full overflow-hidden duration-300 transform bg-white rounded-lg hover:scale-105">
+            <a className="flex flex-col items-center w-full overflow-hidden duration-300 transform bg-white rounded-lg shadow-md hover:scale-105">
                 <LazyLoadImage
                     className={`w-full shadow-md rounded-b-xl ${
                         loadingImage ? "hidden" : "block"
