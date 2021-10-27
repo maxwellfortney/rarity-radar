@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import Loader from "../components/Loader";
-import DayOfMonth from "../components/Upcoming/DayOfMonth";
 import Month from "../components/Upcoming/Month";
-import { monthNames } from "../utils/client";
+
+import Head from "next/head";
 
 export default function Upcoming() {
     const [isLoading, setIsLoading] = useState(true);
@@ -100,37 +100,52 @@ export default function Upcoming() {
     }, []);
 
     return (
-        <div
-            className="flex flex-col items-center w-11/12 pt-12 animate-fadeIn"
-            style={{ minHeight: "calc(100vh - 64px)" }}
-        >
-            <h1 className="self-start mb-10 text-4xl font-extrabold transition-opacity duration-300 hover:opacity-70 dark:text-white">
-                upcoming
-            </h1>
+        <>
+            <Head>
+                <title>Rarity Radar - Upcoming</title>
+                <meta name="title" content={`Rarity Radar - Upcoming`} />
 
-            <SwitchTransition>
-                <CSSTransition
-                    key={isLoading ? "true" : "false"}
-                    classNames="fade"
-                    timeout={300}
-                >
-                    {isLoading ? (
-                        <Loader />
-                    ) : (
-                        <div className="flex flex-col w-full">
-                            {months.map((month: any) => {
-                                return (
-                                    <Month
-                                        key={month.month}
-                                        month={month.month}
-                                        days={month.days}
-                                    />
-                                );
-                            })}
-                        </div>
-                    )}
-                </CSSTransition>
-            </SwitchTransition>
-        </div>
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={`Rarity Radar - Upcoming`} />
+
+                <meta
+                    property="twitter:title"
+                    content={`Rarity Radar - Upcoming`}
+                />
+            </Head>
+
+            <div
+                className="flex flex-col items-center w-11/12 pt-12 animate-fadeIn"
+                style={{ minHeight: "calc(100vh - 64px)" }}
+            >
+                <h1 className="self-start mb-10 text-4xl font-extrabold transition-opacity duration-300 hover:opacity-70 dark:text-white">
+                    upcoming
+                </h1>
+
+                <SwitchTransition>
+                    <CSSTransition
+                        key={isLoading ? "true" : "false"}
+                        classNames="fade"
+                        timeout={300}
+                    >
+                        {isLoading ? (
+                            <Loader />
+                        ) : (
+                            <div className="flex flex-col w-full">
+                                {months.map((month: any) => {
+                                    return (
+                                        <Month
+                                            key={month.month}
+                                            month={month.month}
+                                            days={month.days}
+                                        />
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </CSSTransition>
+                </SwitchTransition>
+            </div>
+        </>
     );
 }

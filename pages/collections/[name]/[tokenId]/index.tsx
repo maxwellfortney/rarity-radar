@@ -102,8 +102,8 @@ export default function FullNFTPage({
     return (
         <>
             <Head>
-                <title>{tokenName} - Rarity Radar</title>
-                <meta name="title" content={`${tokenName} - Rarity Radar`} />
+                <title>Rarity Radar - {tokenName}</title>
+                <meta name="title" content={`Rarity Radar - ${tokenName}`} />
                 {rank && rarityScore && meanPercentage && (
                     <>
                         <meta
@@ -145,14 +145,14 @@ export default function FullNFTPage({
                 <meta property="og:type" content="website" />
                 <meta
                     property="og:title"
-                    content={`${tokenName} - Rarity Radar`}
+                    content={`Rarity Radar - ${tokenName}`}
                 />
                 <meta property="og:image" content={image} />
 
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta
                     property="twitter:title"
-                    content={`${tokenName} - Rarity Radar`}
+                    content={`Rarity Radar - ${tokenName}`}
                 />
                 <meta property="twitter:image" content={image} />
             </Head>

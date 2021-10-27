@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import Loader from "../components/Loader";
 
+import Head from "next/head";
+
 const NUM_QUESTIONS = 6;
 
 const questions = [
@@ -134,104 +136,128 @@ export default function GetListed() {
     }, [answers]);
 
     return (
-        <div
-            className="flex flex-col items-center w-11/12 pt-12 animate-fadeIn"
-            style={{ minHeight: "calc(100vh - 64px)" }}
-        >
-            <h1 className="self-start text-4xl font-extrabold dark:text-white">
-                get listed
-            </h1>
-            <div className="flex flex-col items-center flex-1 w-full overflow-hidden mb-14">
-                <SwitchTransition mode="out-in">
-                    <CSSTransition
-                        key={questionIndex}
-                        classNames="slideUp"
-                        timeout={500}
-                        // addEndListener={(node, done) => {
-                        //     node.addEventListener("transitionend", done, false);
-                        // }}
-                    >
-                        <div className="max-w-[1000px] flex flex-col items-center justify-center flex-1 w-11/12 md:w-3/4">
-                            {isWaitingSubmit || didSubmit ? (
-                                <>
-                                    <SwitchTransition>
-                                        <CSSTransition
-                                            key={
-                                                isWaitingSubmit
-                                                    ? "true"
-                                                    : "false"
-                                            }
-                                            classNames="fade"
-                                            timeout={300}
-                                        >
-                                            {isWaitingSubmit ? (
-                                                <Loader />
-                                            ) : (
-                                                <>
-                                                    <p
-                                                        className={`text-3xl font-black text-transparent bg-gradient-to-br bg-clip-text ${
-                                                            submitSuccess
-                                                                ? "from-[#29FC25] to-[#00FE38]"
-                                                                : "from-[#FF2B2B] to-[#FE0000]"
-                                                        }`}
-                                                    >
-                                                        {submitSuccess
-                                                            ? "successfully submited form"
-                                                            : "failed to submit form"}
-                                                    </p>
-                                                    <p
-                                                        className={`mt-3 font-medium text-white`}
-                                                    >
-                                                        {submitSuccess
-                                                            ? "we will review your answers as soon as possible"
-                                                            : "please try again"}
-                                                    </p>
-                                                </>
-                                            )}
-                                        </CSSTransition>
-                                    </SwitchTransition>
-                                </>
-                            ) : (
-                                <AQuestion
-                                    index={questionIndex}
-                                    currentAnswer={currentAnswer}
-                                    setCurrentAnswer={setCurrentAnswer}
-                                    isInputValid={isInputValid}
-                                    setIsInputValid={setIsInputValid}
-                                />
-                            )}
-                        </div>
-                    </CSSTransition>
-                </SwitchTransition>
+        <>
+            <Head>
+                <title>Rarity Radar - Get Listed</title>
+                <meta name="title" content={`Rarity Radar - Get Listed`} />
 
-                <button
-                    disabled={
-                        !isInputValid || currentAnswer.length === 0 || didSubmit
-                    }
-                    onClick={handleClick}
-                    className={`flex items-center ${
-                        didSubmit ? "invisible" : ""
-                    } ${
-                        !isInputValid || currentAnswer.length === 0
-                            ? "opacity-70"
-                            : ""
-                    } justify-center pl-4 pr-2 text-lg py-1.5 ml-auto font-semibold text-white dark:text-black transition-opacity duration-300 bg-moreLight dark:bg-white rounded-md hover:opacity-70`}
-                >
-                    <p>{questionIndex === NUM_QUESTIONS ? "submit" : "next"}</p>
-                    <svg
-                        className="w-5 h-5 mt-0.5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
+                <meta property="og:type" content="website" />
+                <meta
+                    property="og:title"
+                    content={`Rarity Radar - Get Listed`}
+                />
+
+                <meta
+                    property="twitter:title"
+                    content={`Rarity Radar - Get Listed`}
+                />
+            </Head>
+
+            <div
+                className="flex flex-col items-center w-11/12 pt-12 animate-fadeIn"
+                style={{ minHeight: "calc(100vh - 64px)" }}
+            >
+                <h1 className="self-start text-4xl font-extrabold dark:text-white">
+                    get listed
+                </h1>
+                <div className="flex flex-col items-center flex-1 w-full overflow-hidden mb-14">
+                    <SwitchTransition mode="out-in">
+                        <CSSTransition
+                            key={questionIndex}
+                            classNames="slideUp"
+                            timeout={500}
+                            // addEndListener={(node, done) => {
+                            //     node.addEventListener("transitionend", done, false);
+                            // }}
+                        >
+                            <div className="max-w-[1000px] flex flex-col items-center justify-center flex-1 w-11/12 md:w-3/4">
+                                {isWaitingSubmit || didSubmit ? (
+                                    <>
+                                        <SwitchTransition>
+                                            <CSSTransition
+                                                key={
+                                                    isWaitingSubmit
+                                                        ? "true"
+                                                        : "false"
+                                                }
+                                                classNames="fade"
+                                                timeout={300}
+                                            >
+                                                {isWaitingSubmit ? (
+                                                    <Loader />
+                                                ) : (
+                                                    <>
+                                                        <p
+                                                            className={`text-3xl font-black text-transparent bg-gradient-to-br bg-clip-text ${
+                                                                submitSuccess
+                                                                    ? "from-[#29FC25] to-[#00FE38]"
+                                                                    : "from-[#FF2B2B] to-[#FE0000]"
+                                                            }`}
+                                                        >
+                                                            {submitSuccess
+                                                                ? "successfully submited form"
+                                                                : "failed to submit form"}
+                                                        </p>
+                                                        <p
+                                                            className={`mt-3 font-medium text-white`}
+                                                        >
+                                                            {submitSuccess
+                                                                ? "we will review your answers as soon as possible"
+                                                                : "please try again"}
+                                                        </p>
+                                                    </>
+                                                )}
+                                            </CSSTransition>
+                                        </SwitchTransition>
+                                    </>
+                                ) : (
+                                    <AQuestion
+                                        index={questionIndex}
+                                        currentAnswer={currentAnswer}
+                                        setCurrentAnswer={setCurrentAnswer}
+                                        isInputValid={isInputValid}
+                                        setIsInputValid={setIsInputValid}
+                                    />
+                                )}
+                            </div>
+                        </CSSTransition>
+                    </SwitchTransition>
+
+                    <button
+                        disabled={
+                            !isInputValid ||
+                            currentAnswer.length === 0 ||
+                            didSubmit
+                        }
+                        onClick={handleClick}
+                        className={`flex items-center ${
+                            didSubmit ? "invisible" : ""
+                        } ${
+                            !isInputValid || currentAnswer.length === 0
+                                ? "opacity-70"
+                                : ""
+                        } justify-center pl-4 pr-2 text-lg py-1.5 ml-auto font-semibold text-white dark:text-black transition-opacity duration-300 bg-moreLight dark:bg-white rounded-md hover:opacity-70`}
                     >
-                        <path
-                            fillRule="evenodd"
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clipRule="evenodd"
-                        />
-                    </svg>
-                </button>
+                        <p>
+                            {questionIndex === NUM_QUESTIONS
+                                ? "submit"
+                                : "next"}
+                        </p>
+                        <svg
+                            className="w-5 h-5 mt-0.5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                        >
+                            <path
+                                fillRule="evenodd"
+                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                clipRule="evenodd"
+                            />
+                        </svg>
+                    </button>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
@@ -266,7 +292,7 @@ function AQuestion({
 
     return (
         <>
-            <div className="block self-start mb-5">
+            <div className="self-start block mb-5">
                 <h2 className="text-3xl font-black text-transparent bg-gradient-to-br bg-clip-text from-blue-500 to-cyan-400">
                     {question.text}
                 </h2>
@@ -284,14 +310,14 @@ function AQuestion({
                         {question.errorMessage}
                     </p>
                 </CSSTransition>
-            <input
-                type={question.inputType}
-                className="text-white mt-3 dark:text-black dark:bg-white bg-moreLight font-semibold rounded-lg py-1.5 px-2 w-2/3 placeholder-white dark:placeholder-black"
-                placeholder={question.placeholder}
-                value={currentAnswer}
-                onChange={handleChange}
-                min={question.min}
-            />
+                <input
+                    type={question.inputType}
+                    className="text-white mt-3 dark:text-black dark:bg-white bg-moreLight font-semibold rounded-lg py-1.5 px-2 w-2/3 placeholder-white dark:placeholder-black"
+                    placeholder={question.placeholder}
+                    value={currentAnswer}
+                    onChange={handleChange}
+                    min={question.min}
+                />
             </div>
         </>
     );
